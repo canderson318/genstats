@@ -67,9 +67,9 @@ Here we calculate the singular vectors:
 ```{r}
 edata = edata[rowMeans(edata) > 100, ]
 edata = log2(edata + 1)
-edata_centered = edata - rowMeans(edata)
-svd1 = svd(edata_centered)
-names(svd1)
+edata_centered = edata - rowMeans(edata) #remove rowmeans otherwise everything centered on it
+svd1 = svd(edata_centered) #singular value decomposition
+names(svd1) # d: variation across   v: variation across genes u: variation across samples
 ```
 
 ## Look at the percent variance explained
@@ -83,9 +83,7 @@ plot(svd1$d^2/sum(svd1$d^2),ylab="Percent Variance Explained",col=2)
 ## Plot top two principal components
 
 ```{r}
-par(mfrow=c(1,2))
-plot(svd1$v[,1],col=2,ylab="1st PC")
-plot(svd1$v[,2],col=2,ylab="2nd PC")
+par(mfrow=c(1,2));plot(svd1$v[,1],col=2,ylab="1st PC");plot(svd1$v[,2],col=2,ylab="2nd PC")
 ```
 
 ## Plot PC1 vs. PC2

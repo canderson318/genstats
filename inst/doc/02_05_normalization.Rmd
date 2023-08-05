@@ -18,6 +18,10 @@ output:
 
 This document depends on the following packages:
 
+```{r}
+BiocManager::install("preprocessCore")
+```
+
 ```{r load_hidden, echo=FALSE, results="hide", warning=FALSE}
 suppressPackageStartupMessages({
   library(devtools)
@@ -26,12 +30,13 @@ suppressPackageStartupMessages({
 })
 ```
 
-```{r load}
-  library(devtools)
-  library(Biobase)
-  library(preprocessCore)
-```
+```{r pallete}
+tropical = c('darkorange', 'dodgerblue', 'hotpink', 'limegreen', 'yellow')
+palette(tropical)
 
+par(pch = 19)
+
+```
 
 To install these packages you can use the code (or if you are compiling the document, remove the `eval=FALSE` from the chunk.)
 

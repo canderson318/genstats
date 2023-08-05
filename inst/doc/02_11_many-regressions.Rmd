@@ -22,6 +22,8 @@ This document depends on the following packages:
 suppressPackageStartupMessages({
   library(devtools)
   library(Biobase)
+  BiocManager::install(c("limma", "edge"))
+  
   library(limma)
   library(edge)
 })
@@ -43,6 +45,14 @@ source("http://www.bioconductor.org/biocLite.R")
 biocLite(c("Biobase","limma","jdstorey/edge"))
 ```
 
+
+```{r pallete}
+tropical = c('darkorange', 'dodgerblue', 'hotpink', 'limegreen', 'yellow')
+palette(tropical)
+
+par(pch = 19)
+
+```
 
 ## Download the data
 

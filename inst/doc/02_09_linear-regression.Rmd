@@ -29,8 +29,18 @@ suppressPackageStartupMessages({
 ```{r load}
   library(devtools)
   library(Biobase)
+#BiocManager::install("broom")
   library(broom)
 ```
+
+```{r pallete}
+tropical = c('darkorange', 'dodgerblue', 'hotpink', 'limegreen', 'yellow')
+palette(tropical)
+
+par(pch = 19)
+
+```
+ 
 
 To install these packages you can use the code (or if you are compiling the document, remove the `eval=FALSE` from the chunk.)
 
@@ -203,10 +213,16 @@ tidy(lm8)
 Another good idea is to look for "patterns" in the residuals
 
 ```{r}
-colramp = colorRampPalette(1:4)(17)
+colramp = colorRampPalette(1:5)(17)
 lm9 = lm(edata[2,] ~ pdata$age)
-plot(lm9$residuals,col=colramp[as.numeric(pdata$tissue.type)])
+plot(lm9$residuals,col=colramp[as.numeric(pdata$tissue.type)]);legend("topright", legend = unique(pdata$tissue.type),
+       col = colramp[1:length(unique(pdata$tissue.type))], pch = 19, title = "Tissue Type")
 ```
+
+
+
+
+
 
 
 ## Notes and further reading

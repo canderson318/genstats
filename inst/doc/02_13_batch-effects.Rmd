@@ -23,6 +23,7 @@ suppressPackageStartupMessages({
   library(devtools)
   library(Biobase)
   library(sva)
+  #BiocManager::install(c("bladderbatch", "snpStats"))
   library(bladderbatch)
   library(snpStats)
 })
@@ -120,7 +121,8 @@ See if any of the variables correlate with batch
 ```{r}
 summary(lm(sva1$sv ~ pheno$batch))
 boxplot(sva1$sv[,2] ~ pheno$batch)
-points(sva1$sv[,2] ~ jitter(as.numeric(pheno$batch)),col=as.numeric(pheno$batch))
+points(sva1$sv[,2] ~ jitter(as.numeric(pheno$batch)),col=as.numeric(pheno$batch), pch = 1)
+
 ```
 
 Add the surrogate variables to the model matrix and perform the model fit
@@ -161,6 +163,7 @@ Calculate the PCs
 xxmat <- xxt(ctl.10, correct.for.missing=FALSE)
 evv <- eigen(xxmat, symmetric=TRUE)
 pcs <- evv$vectors[,1:5]
+dim(pcs)
 ```
 
 Let's compare the PCs to the population labels and see that PC1 captures the population variable very well

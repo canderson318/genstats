@@ -80,6 +80,24 @@ library(Biobase)
 library(dendextend)
 
 kmeans = kmeans(edata_mp, centers = 3)
-matplot(t(kmeans1$centers),col=1:3,type="l",lwd=3)
+kmeans2 = kmeans(edata_mp[rowMeans(edata_mp) < 100,], centers = 3)
+kmeans3 = kmeans(log2(edata + 1), centers = 3)
+matplot(t(kmeans$centers),col=1:3,type="l",lwd=3)
+matplot(t(kmeans2$centers), col = 1:3, type = "l", lwd = 3)
+matplot(t(kmeans3$centers), col = 1:3, type = "l", lwd = 3)
 
+plot(kmeans$centers)
+```
+
+
+```{r}
+
+set.seed(1235)
+kmeans4 = kmeans(log2(edata_mp + 1), centers = 2)
+
+dist = dist(t(edata_mp)) #[ , -which(colnames(edata_mp) == "NA18853") ]
+dend = hclust(dist)
+cut<- cutree(dend, k = 2)
+
+matplot(t(kmeans4$centers), col=1:2,type="l",lwd=3); plot(dend);plot(cut, pch = kmeans4$cluster )
 ```
