@@ -1,0 +1,85 @@
+---
+title: "test.RMD"
+author: "Christian A."
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r setup, eval = TRUE}
+knitr::opts_chunk$set(cache = TRUE)
+
+```
+
+```{r}
+x = rnorm(10)
+
+plot(x, pch = 19, col = "dodgerblue")
+
+```
+
+```{r }
+y = rbinom(20, size = 1, prob = .5)
+table(y)
+
+
+```
+
+
+```{r}
+
+library(Biobase)
+library(GenomicRanges)
+data("sample.ExpressionSet", package = "Biobase")
+se = makeSummarizedExperimentFromExpressionSet(sample.ExpressionSet)
+
+```
+
+```{r}
+con = url("http://bowtie-bio.sourceforge.net/recount/ExpressionSets/bottomly_eset.RData")
+load(file = con)
+close(con)
+bot = bottomly.eset
+pdata_bot = pData(bot)
+
+con = url("http://bowtie-bio.sourceforge.net/recount/ExpressionSets/bodymap_eset.RData")
+load(file = con)
+close(con)
+bm = bodymap.eset
+pdata_bm = pData(bm)
+edata_bm = exprs(bm)
+
+```
+
+```{R }
+library(plotrix)
+pie3D(pdata_bm$num.tech.reps,labels=pdata_bm$tissue.type)
+```
+
+
+
+```{r}
+mm = log2(edata_bm[,1]+1) - log2(edata_bm[,2]+1)
+aa = log2(edata_bm[,1]+1) + log2(edata_bm[,2]+1)
+plot(aa,mm,col=2)
+abline(h=0)
+
+```
+
+```{r}
+con = url("http://bowtie-bio.sourceforge.net/recount/ExpressionSets/montpick_eset.RData")
+load(file = con)
+close(con)
+mp = montpick.eset
+pdata_mp = pData(mp)
+edata_mp = exprs(mp)
+
+```
+
+```{r}
+library(devtools)
+library(Biobase)
+library(dendextend)
+
+kmeans = kmeans(edata_mp, centers = 3)
+matplot(t(kmeans1$centers),col=1:3,type="l",lwd=3)
+
+```

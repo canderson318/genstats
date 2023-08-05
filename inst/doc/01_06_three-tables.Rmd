@@ -37,7 +37,7 @@ To install these packages you can use the code (or if you are compiling the docu
 install.packages("devtools")
 source("http://www.bioconductor.org/biocLite.R")
 biocLite(c("Biobase"))
-```
+``` 
 
 
 ## Load the data from the web
@@ -63,7 +63,7 @@ These are usually high dimensional measurements. In this case it is RNA-sequenci
 ```{r expression_data}
 exp_data = exprs(bm)
 dim(exp_data)
-head(exp_data,n=5)
+View(head(exp_data,n=5))
 ```
 
 ### Table 2: the phenotype data

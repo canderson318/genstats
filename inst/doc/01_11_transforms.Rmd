@@ -91,7 +91,7 @@ min(log(edata))
 You can remove this problem by adding a small number to all the counts before taking the log. This doesn't change the overall distribution much but resolves the zero problem
 
 ```{r}
-min(log(edata[,1] + 1))
+min(log(edata[,1] + 1))#fixes log of 0 = undef
 hist(log(edata[,1] + 1),breaks=100,col=2)
 ```
 

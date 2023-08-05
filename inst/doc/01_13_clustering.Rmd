@@ -107,7 +107,7 @@ We can also color the dendrogram either into a fixed number of groups
 
 ```{r}
 dend = as.dendrogram(hclust1)
-dend = color_labels(hclust1,4,col=1:4)
+dend = color_labels(hclust1,3,col=1:4)#cutoff for what splits into 4 clusters
 plot(dend)
 ```
 
