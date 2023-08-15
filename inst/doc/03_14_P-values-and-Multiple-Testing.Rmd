@@ -13,12 +13,20 @@ output:
 ```{r front, child="./../front.Rmd", echo=FALSE}
 ```
 
+```{r pallete}
+tropical = c('darkorange', 'dodgerblue', 'hotpink', 'limegreen', 'yellow')
+palette(tropical)
 
+par(pch = 19)
+
+```
 ## Dependencies
 
 This document depends on the following packages:
 
 ```{r load_hidden, echo=FALSE, results="hide", warning=FALSE}
+
+BiocManager::install(c("broom", "devtools", "Biobase", "limma", "edge", "genefilter", "qvalue"))
 suppressPackageStartupMessages({
   library(devtools)
   library(Biobase)
