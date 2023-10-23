@@ -21,7 +21,7 @@ This document depends on the following packages:
 suppressPackageStartupMessages({
   library(devtools)
   library(Biobase)
-  library(RSkittleBrewer)
+ # library(RSkittleBrewer)
   library(gplots)
   library(dplyr)
   library(AnnotationDbi)
